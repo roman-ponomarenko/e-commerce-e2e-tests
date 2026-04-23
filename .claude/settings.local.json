@@ -17,7 +17,9 @@
       "Bash(playwright-cli reload:*)",
       "Bash(pnpm install:*)",
       "Bash(pnpm add:*)",
-      "Bash(pnpm remove:*)"
+      "Bash(pnpm remove:*)",
+      "Bash(awk '/^export|^    async/ {print NR\": \"$0}' src/app/components/header.component.ts)",
+      "Bash(awk:*)"
     ]
   }
 }

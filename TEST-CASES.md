@@ -1,10 +1,66 @@
 # Test Cases — Northwind Goods
 
-> ✅ = implemented · ⚠️ = high value, not yet implemented
-
-Guided by the [Test Automation Manifest](./MANIFEST.MD): quality over quantity, transparency over comfort.
 
 ---
+
+## Automated Test Inventory
+
+Complete list of tests as they appear in the test files. **28 active · 1 skipped.**
+
+### `auth.tests.ts` — `@auth`
+
+| # | Test name | Status |
+|---|---|---|
+| 1 | Register with valid data should create an account and allow login | ✅ Active |
+| 2 | Login should fail with incorrect password | ✅ Active |
+| 3 | Login should fail with unregistered email | ✅ Active |
+| 4 | Login form should show validation errors when submitted empty | ✅ Active |
+| 5 | Register should fail when passwords do not match | ✅ Active |
+| 6 | Register should fail with already registered email | ✅ Active |
+| 7 | Register form should show validation errors when submitted empty | ✅ Active |
+| 8 | "Sign in" link on register page should navigate to login | ✅ Active |
+| 9 | "Create account" link on login page should navigate to register | ✅ Active |
+
+### `browsing.tests.ts` — `@browsing`
+
+| # | Test name | Status |
+|---|---|---|
+| 1 | Homepage navigation should load the product list and support category tile and breadcrumb navigation | ✅ Active |
+| 2 | Product detail page should display correct product info, related products, and breadcrumb navigation | ✅ Active |
+| 3 | Category filter should show only products matching the selected category | ✅ Active |
+| 4 | Product sorting should reorder the list correctly for each sort option | ✅ Active |
+| 5 | Product search should filter results by name and restore all products on clear | ✅ Active |
+
+### `cart-checkout.tests.ts` — `@cart-checkout`
+
+| # | Test name | Status |
+|---|---|---|
+| 1 | Size selection and quantity adjustment should add the correct number of items to the cart | ✅ Active |
+| 2 | Placing an order with valid details should complete checkout and appear in account history | ✅ Active |
+| 3 | Unauthenticated checkout from cart page should redirect to login and resume to checkout after sign in | ⏭️ Skipped — app bug: redirects to home instead of checkout after login |
+| 4 | Removing the last item from the cart drawer should show empty cart state | ✅ Active |
+| 5 | Authenticated "Checkout" from cart drawer should navigate directly to checkout | ✅ Active |
+| 6 | Unauthenticated "Checkout" from cart drawer should redirect to login | ✅ Active |
+| 7 | Applying a valid promo code should discount the order total through to confirmation | ✅ Active |
+| 8 | Applying an invalid promo code should show an error and leave the order total unchanged | ✅ Active |
+| 9 | Removing a cart item and updating quantity should reflect correctly in the order summary and at checkout | ✅ Active |
+| 10 | Checkout form should show a validation error when submitted without required fields | ✅ Active |
+
+### `cookie-consent.tests.ts` — `@cookie`
+
+| # | Test name | Status |
+|---|---|---|
+| 1 | Accepting all cookies should hide the banner and show the trust badge | ✅ Active |
+| 2 | Declining cookies should hide the banner and show the trust badge | ✅ Active |
+| 3 | Customising and saving preferences should hide the banner and show the trust badge | ✅ Active |
+| 4 | Cookie consent preferences should persist after page reload | ✅ Active |
+| 5 | Cookie banner should reappear after consent storage is cleared | ✅ Active |
+
+---
+
+> ✅ = implemented · ⚠️ = high value, not yet implemented
+
+Guided by the [Test Automation Manifest](./TA-MANIFEST.md): quality over quantity, transparency over comfort.
 
 ## 1. Browsing
 
