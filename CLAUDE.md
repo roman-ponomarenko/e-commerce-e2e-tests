@@ -27,7 +27,10 @@ pnpm test:report           # open last HTML report
 pnpm test:allure           # generate Allure report and open it
 pnpm test:allure:generate  # generate Allure report only
 pnpm test:allure:open      # open previously generated Allure report
+pnpm clean:reports         # delete playwright-report, allure-results, allure-report, test-results
 ```
+
+> **Note:** All test scripts automatically run `clean:reports` before each run via pnpm `pre` hooks. This requires `enable-pre-post-scripts=true` in `.npmrc` (already configured).
 
 ### Direct Playwright CLI
 

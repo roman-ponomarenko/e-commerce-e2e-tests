@@ -106,6 +106,8 @@ See the **Explicitly Excluded** table in [TEST-CASES.md](./TEST-CASES.md) for th
 
 ## Running Tests
 
+> **Auto-clean:** All test scripts automatically delete report folders (`playwright-report/`, `allure-results/`, `allure-report/`, `test-results/`) before each run via pnpm `pre` hooks, configured in `.npmrc` (`enable-pre-post-scripts=true`). Run `pnpm clean:reports` to clean manually without running tests.
+
 ### Run all tests
 
 ```bash
@@ -198,6 +200,14 @@ pnpm test:allure           # generate report from allure-results/ and open it
 pnpm test:allure:generate  # generate only
 pnpm test:allure:open      # open a previously generated report
 ```
+
+### Clean report folders
+
+```bash
+pnpm clean:reports
+```
+
+Deletes `playwright-report/`, `allure-results/`, `allure-report/`, and `test-results/` in one command. Useful before a fresh run to avoid stale artifacts.
 
 ---
 
