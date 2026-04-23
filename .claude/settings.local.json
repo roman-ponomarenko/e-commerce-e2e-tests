@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(playwright-cli)",
+      "Skill(playwright-cli:*)",
+      "Bash(playwright-cli eval:*)",
+      "Bash(playwright-cli open:*)",
+      "Bash(playwright-cli snapshot:*)",
+      "Bash(playwright-cli goto:*)",
+      "Bash(playwright-cli click:*)",
+      "Bash(playwright-cli fill:*)",
+      "Bash(playwright-cli select:*)",
+      "Bash(playwright-cli close:*)",
+      "Bash(/Users/roman/Workspace/e-commerce-e2e-tests/node_modules/.bin/playwright-cli open:*)",
+      "Bash(/Users/roman/Workspace/e-commerce-e2e-tests/node_modules/.bin/playwright-cli eval:*)",
+      "Bash(/Users/roman/Workspace/e-commerce-e2e-tests/node_modules/.bin/playwright-cli click:*)",
+      "Bash(/Users/roman/Workspace/e-commerce-e2e-tests/node_modules/.bin/playwright-cli close:*)",
+      "Bash(pnpm exec:*)",
+      "Bash(grep -l \"cart\\\\|/cart\" /Users/roman/Workspace/e-commerce-e2e-tests/.playwright-cli/page-*.yml)",
+      "Bash(grep:*)",
+      "Bash(playwright-cli run-code 'async page => {:*)",
+      "Bash(playwright-cli reload:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm remove:*)"
+    ]
+  }
+}
