@@ -36,7 +36,7 @@ export abstract class AppPage extends Component {
      * Opens the page in the browser and expectLoaded should pass
      */
     @step("User opens page")
-    async open(path?: string) {
+    async open(path?: string): Promise<void> {
         await this.page.goto(path ?? this.pagePath);
     }
 

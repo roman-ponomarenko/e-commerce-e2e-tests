@@ -108,7 +108,7 @@ function replacePlaceholders(template: string, values: any[], paramNames: string
 
         }
 
-        else{
+        else {
             replacePlaceholderParam(param, value);
         }
 

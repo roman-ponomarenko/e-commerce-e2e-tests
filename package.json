@@ -13,6 +13,9 @@
     "test:cart": "pnpm exec playwright test --grep @cart-checkout",
     "test:cookie": "pnpm exec playwright test --grep @cookie",
     "test:report": "pnpm exec playwright show-report --port 9324",
+    "test:allure": "pnpm exec allure generate && pnpm exec allure open",
+    "test:allure:generate": "pnpm exec allure generate",
+    "test:allure:open": "pnpm exec allure open",
     "lint": "eslint src/ tests/",
     "lint:fix": "eslint src/ tests/ --fix"
   },
@@ -26,6 +29,7 @@
     "@playwright/cli": "^0.1.8",
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.6.0",
+    "allure-playwright": "^3.7.1",
     "dotenv": "^17.4.2",
     "envalid": "^8.1.1",
     "eslint": "^9.39.4",
@@ -33,5 +37,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.0"
+  },
+  "dependencies": {
+    "allure": "^3.6.2"
   }
 }

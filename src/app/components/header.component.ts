@@ -14,6 +14,7 @@ export class Header extends Component {
     private accountName = this.root.locator("[data-testid='account-menu'] span").last();
     private cartButton = this.root.getByTestId('cart-button');
 
+    // Verification methods
     @step("Verifying header is loaded")
     async verifyLoaded(message = 'Header should be visible'): Promise<void> {
         await expect(this.root, message).toBeVisible();

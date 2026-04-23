@@ -49,6 +49,7 @@ PW_WORKERS=1
 | `CI` | Set to `true` in CI — enables headless mode |
 | `PW_MAX_RETRIES` | Number of retries for failed tests (`1`–`4`) |
 | `PW_WORKERS` | Number of parallel workers (`1`–`4`) |
+| `PW_SLOW_MO` | Milliseconds to slow down each browser action, useful for debugging (default: `0`) |
 
 ---
 
@@ -117,6 +118,12 @@ pnpm test
 pnpm test:headed
 ```
 
+### Run headed with slow motion (300 ms per action)
+
+```bash
+pnpm test:headed:slow
+```
+
 ### Run forced headless (ignores `CI` flag)
 
 ```bash
@@ -127,12 +134,6 @@ pnpm test:headless
 
 ```bash
 pnpm test:debug
-```
-
-### Run in UI mode (interactive watch + rerun)
-
-```bash
-pnpm test:ui
 ```
 
 ---
@@ -174,19 +175,29 @@ pnpm exec playwright test tests/cart-checkout.tests.ts --grep "promo code"
 
 ## Reports
 
-### Open the last HTML report
+The project runs three reporters simultaneously on every test run:
+
+- **Line** — prints one line per test to the console, giving a live progress view while tests are running.
+- **HTML** — generates a full interactive report in `playwright-report/` with attached screenshots, videos, and traces. Does not auto-open after the run (`open: never`); use `pnpm test:report` to view it.
+- **Allure** — writes structured result files to `allure-results/`, including environment metadata (OS, Node version), suite titles, and granular `@step` detail. Use `pnpm test:allure` to generate and open the browsable report.
+
+### HTML report (Playwright built-in)
 
 ```bash
-pnpm test:report
-```
-
-### Generate and open in one step
-
-```bash
-pnpm test && pnpm test:report
+pnpm test:report           # open the last HTML report
+pnpm test && pnpm test:report  # run tests then open report
 ```
 
 The report is saved to `playwright-report/`. Screenshots are always captured. Videos and traces are saved on failure and can be viewed inside the HTML report.
+
+### Allure report
+
+```bash
+pnpm test                  # run tests (writes results to allure-results/)
+pnpm test:allure           # generate report from allure-results/ and open it
+pnpm test:allure:generate  # generate only
+pnpm test:allure:open      # open a previously generated report
+```
 
 ---
 

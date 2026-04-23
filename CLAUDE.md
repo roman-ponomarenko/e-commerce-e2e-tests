@@ -14,15 +14,19 @@ Playwright + TypeScript E2E test suite for the **Northwind Goods** e-commerce si
 ### pnpm scripts
 
 ```bash
-pnpm test              # all tests (headless, per PW_WORKERS)
-pnpm test:headed       # all tests with browser visible
-pnpm test:headless     # all tests forced headless
-pnpm test:debug        # step through with Playwright Inspector
-pnpm test:auth         # @auth suite only
-pnpm test:browsing     # @browsing suite only
-pnpm test:cart         # @cart-checkout suite only
-pnpm test:cookie       # @cookie suite only
-pnpm test:report       # open last HTML report
+pnpm test                  # all tests (headless, per PW_WORKERS)
+pnpm test:headed           # all tests with browser visible
+pnpm test:headed:slow      # all tests headed with PW_SLOW_MO=300ms delay
+pnpm test:headless         # all tests forced headless
+pnpm test:debug            # step through with Playwright Inspector
+pnpm test:auth             # @auth suite only
+pnpm test:browsing         # @browsing suite only
+pnpm test:cart             # @cart-checkout suite only
+pnpm test:cookie           # @cookie suite only
+pnpm test:report           # open last HTML report
+pnpm test:allure           # generate Allure report and open it
+pnpm test:allure:generate  # generate Allure report only
+pnpm test:allure:open      # open previously generated Allure report
 ```
 
 ### Direct Playwright CLI
@@ -230,6 +234,7 @@ tests/
 | `CI` | bool | Enables headless mode |
 | `PW_MAX_RETRIES` | 1\|2\|3\|4 | Test retry count |
 | `PW_WORKERS` | 1\|2\|3\|4 | Number of parallel workers |
+| `PW_SLOW_MO` | number | Milliseconds to slow down each browser action (default: `0`) |
 
 ## Adding New Pages / Components
 

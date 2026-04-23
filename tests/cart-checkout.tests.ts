@@ -196,7 +196,7 @@ test.describe('Cart & Checkout tests', () => {
             await app.loginPage.verifyLoaded();
         });
 
-    //TODO: Skipped due to of redirect failure, after login checkout page is not loaded, instead user is redirected to home page
+    //TODO: Skipped due to redirect failure, after login checkout page is not loaded, instead user is redirected to home page
     test.skip('Unauthenticated checkout from cart page should redirect to login and resume to checkout after sign in',
         {tag: '@cart-checkout'}, async ({app, config}) => {
             const homeProductName = "Enamel Pour-Over Kettle";

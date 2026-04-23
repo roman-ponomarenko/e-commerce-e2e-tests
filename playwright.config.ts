@@ -1,7 +1,9 @@
-import {defineConfig, devices} from '@playwright/test';
+import {devices, PlaywrightTestConfig} from '@playwright/test';
 import config from "@/config";
 
-export default defineConfig({
+import * as os from "node:os";
+
+const pwConfig: PlaywrightTestConfig = {
     timeout: 90 * 1000,  // Global timeout for each test
     retries: config.PW_MAX_RETRIES,
     workers: config.PW_WORKERS,
@@ -11,7 +13,24 @@ export default defineConfig({
         timeout: 10 * 1000,
     },
 
-    reporter: [['html', {open: 'never'}], ['list', {printSteps: true}]],
+    reporter: [
+        ["line"],
+        ['html', {open: 'never'}],
+        [
+            "allure-playwright",
+            {
+                resultsDir: "allure-results",
+                detail: true,
+                suiteTitle: true,
+                environmentInfo: {
+                    os_platform: os.platform(),
+                    os_release: os.release(),
+                    os_version: os.version(),
+                    node_version: process.version,
+                },
+            },
+        ],
+    ],
 
     use: {
         baseURL: config.APP_URL,
@@ -31,7 +50,9 @@ export default defineConfig({
     projects: [
         {
             name: 'chrome',
-            use: {...devices['Desktop Chrome'], viewport: { width: 1366, height: 768 }},
+            use: {...devices['Desktop Chrome'], viewport: {width: 1366, height: 768}},
         },
     ],
-});
+};
+
+export default pwConfig;
