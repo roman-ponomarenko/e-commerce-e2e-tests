@@ -4,7 +4,7 @@ Playwright + TypeScript E2E test suite for the **Northwind Goods** e-commerce si
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/en/download) v18+
+- [Node.js](https://nodejs.org/en/download) v22+
 - [pnpm](https://pnpm.io/) v10+
 - A running instance of the Northwind Goods [app](https://github.com/secureprivacy/example-e-commerce-website) (default: `http://localhost:5173`)
 
