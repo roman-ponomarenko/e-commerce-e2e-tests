@@ -1,6 +1,6 @@
 import {AppPage} from "@/app/abstract-classes";
 import {step} from "@/utils/step-decorator";
-import type { Locator} from "@playwright/test";
+import type { Locator } from "@playwright/test";
 import {expect} from "@playwright/test";
 import type {CategoryValue} from "@/app/pages/product-list.page";
 import {ProductCard} from "@/app/components/product-card.component";

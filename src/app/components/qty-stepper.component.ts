@@ -29,7 +29,7 @@ export class QuantityStepper extends Component {
 
     @step("Getting quantity stepper value")
     async getValue(): Promise<number> {
-        return parseInt((await this.valueDisplay.textContent()) ?? '0', 10);
+        return parseInt(await this.valueDisplay.inputValue(), 10);
     }
 
     // Action methods

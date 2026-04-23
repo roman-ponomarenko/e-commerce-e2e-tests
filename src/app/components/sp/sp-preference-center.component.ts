@@ -8,9 +8,6 @@ export class SpPreferenceCenter extends Component {
     private frameLocator = "#sp-preference-center iframe[id='ifrmPrivacyBanner']";
     private frameElement = this.page.frameLocator(this.frameLocator);
 
-    private settingsTab = this.frameElement.getByRole('tab', {name: 'Settings'});
-    private dataRequestTab = this.frameElement.getByRole('tab', {name: 'Data request'});
-
     private cancelButton = this.frameElement.getByRole('button', {name: 'Cancel'});
     private saveButton = this.frameElement.getByRole('button', {name: 'Save'});
 
@@ -31,16 +28,6 @@ export class SpPreferenceCenter extends Component {
     }
 
     // Actions methods
-    @step("User clicks 'Settings' tab")
-    async clickSettingsTab(): Promise<void> {
-        await this.settingsTab.click();
-    }
-
-    @step("User clicks 'Data request' tab")
-    async clickDataRequestTab(): Promise<void> {
-        await this.dataRequestTab.click();
-    }
-
     @step("User clicks 'Cancel' button")
     async clickCancelButton(): Promise<void> {
         await this.cancelButton.click();

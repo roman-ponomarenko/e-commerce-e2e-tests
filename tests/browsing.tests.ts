@@ -306,6 +306,9 @@ test.describe('Browsing tests', () => {
             await app.homePage.clickShopAllProducts();
 
             await app.productListPage.verifyLoaded();
+            await app.productListPage.verifySortOptionsAvailable([
+                Sorting.FEATURED, Sorting.PRICE_ASC, Sorting.PRICE_DESC, Sorting.NAME_ASC
+            ]);
 
             await app.productListPage.selectSort(Sorting.PRICE_ASC);
             await app.productListPage.verifySortOrder(Sorting.PRICE_ASC);

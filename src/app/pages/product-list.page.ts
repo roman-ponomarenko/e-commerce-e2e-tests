@@ -1,6 +1,6 @@
 import {AppPage} from "@/app/abstract-classes";
 import {step} from "@/utils/step-decorator";
-import type { Locator} from "@playwright/test";
+import type { Locator } from "@playwright/test";
 import {expect} from "@playwright/test";
 import {ProductCard} from "@/app/components/product-card.component";
 import {parsePrice} from "@/utils/price";
@@ -69,6 +69,21 @@ export class ProductListPage extends AppPage {
         await expect(this.pageRoot, message).toBeVisible();
         await expect(this.searchInput).toBeVisible();
         await expect(this.productGrid).toBeVisible();
+    }
+
+    @step("Verifying sort options are available")
+    async verifySortOptionsAvailable(options: SortOption[]): Promise<void> {
+        await expect(
+            this.sortSelect.locator('option'),
+            `Sort select should have exactly ${options.length} option${options.length === 1 ? '' : 's'}`
+        ).toHaveCount(options.length);
+
+        for (const {slug, name} of options) {
+            await expect(
+                this.sortSelect.locator(`option[value='${slug}']`),
+                `Sort option '${name}' should be available`
+            ).toBeAttached();
+        }
     }
 
     @step("Verifying result count text shows '{expected}' products")

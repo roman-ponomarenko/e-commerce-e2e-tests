@@ -140,7 +140,7 @@ function extractFunctionParamNames(func: (...args: any[]) => any): { paramNames:
     const match = fnStr.match(/\((.*?)\)/s); // Match function parameters inside ()
     if (!match) return { paramNames: [], defaultValues: {} };
 
-    const paramStr = match[1].replace(/\s+/, ' ').trim(); // Normalize spaces
+    const paramStr = match[1].replace(/\s+/g, ' ').trim(); // Normalize spaces
     const paramNames: string[] = [];
     const defaultValues: Record<string, any> = {};
     let braceCount = 0;

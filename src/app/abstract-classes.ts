@@ -1,5 +1,5 @@
 import type {Locator} from "@playwright/test";
-import { test, type Page} from "@playwright/test";
+import {type Page} from "@playwright/test";
 import {step} from "@/utils/step-decorator";
 
 export abstract class PageHolder {
@@ -35,10 +35,9 @@ export abstract class AppPage extends Component {
     /**
      * Opens the page in the browser and expectLoaded should pass
      */
+    @step("User opens page")
     async open(path?: string) {
-        await test.step(`User goes to ${path ?? this.pagePath} page`, async () => {
-            await this.page.goto(path ?? this.pagePath);
-        });
+        await this.page.goto(path ?? this.pagePath);
     }
 
     @step("User navigates back")
@@ -57,7 +56,7 @@ export abstract class AppPage extends Component {
     }
 
     @step("User closes the page (tab)")
-    async close() {
+    async close(): Promise<void> {
         await this.page.close();
     }
 

@@ -8,7 +8,7 @@ import {parsePrice, formatPrice} from "@/utils/price";
 test.describe('Cart & Checkout tests', () => {
     const fullName = faker.person.fullName();
     const paymentData: PaymentDetails = {
-        fullName: fullName,
+        fullName,
         address: faker.location.streetAddress(),
         city: faker.location.city(),
         zip: faker.location.zipCode(),
@@ -85,12 +85,7 @@ test.describe('Cart & Checkout tests', () => {
         {tag: '@cart-checkout'}, async ({app, config}) => {
             const homeProductName = "Enamel Pour-Over Kettle";
 
-            await app.homePage.open();
-            await app.homePage.verifyLoaded();
-
-            await app.header.clickAccountMenu();
-            await app.header.clickSignIn();
-
+            await app.loginPage.open();
             await app.loginPage.verifyLoaded();
 
             await app.spCookieBanner.verifyLoaded();
@@ -99,7 +94,9 @@ test.describe('Cart & Checkout tests', () => {
             await app.spCookieBanner.verifyHidden();
             await app.spTrustBadge.verifyLoaded();
 
-            await app.loginPage.login(config.APP_USERNAME, config.APP_PASSWORD);
+            await app.loginPage.fillUsername(config.APP_USERNAME);
+            await app.loginPage.fillPassword(config.APP_PASSWORD);
+            await app.loginPage.clickSubmitButton();
 
             await app.homePage.verifyLoaded();
 
@@ -315,20 +312,16 @@ test.describe('Cart & Checkout tests', () => {
         {tag: '@cart-checkout'}, async ({app, config}) => {
             const productName = 'Enamel Pour-Over Kettle';
 
-            await app.homePage.open();
-            await app.homePage.verifyLoaded();
-
-            await app.header.clickAccountMenu();
-            await app.header.clickSignIn();
-
+            await app.loginPage.open();
             await app.loginPage.verifyLoaded();
 
             await app.spCookieBanner.verifyLoaded();
             await app.spCookieBanner.clickDeclineButton();
             await app.spCookieBanner.verifyHidden();
-            await app.spTrustBadge.verifyLoaded();
 
-            await app.loginPage.login(config.APP_USERNAME, config.APP_PASSWORD);
+            await app.loginPage.fillUsername(config.APP_USERNAME);
+            await app.loginPage.fillPassword(config.APP_PASSWORD);
+            await app.loginPage.clickSubmitButton();
 
             await app.homePage.verifyLoaded();
 
@@ -593,7 +586,7 @@ test.describe('Cart & Checkout tests', () => {
             await app.cartPage.orderSummary.verifyShipping('Free');
             await app.cartPage.orderSummary.verifyTotal(formatPrice(price1 + price2));
 
-            await app.cartPage.cardItem(product1).remove();
+            await app.cartPage.cartItem(product1).remove();
 
             await app.cartPage.verifyItemCount(1);
 
@@ -601,15 +594,15 @@ test.describe('Cart & Checkout tests', () => {
             await app.cartPage.orderSummary.verifyShipping('Free');
             await app.cartPage.orderSummary.verifyTotal(rawPrice2);
 
-            await app.cartPage.cardItem(product2).increment();
-            await app.cartPage.cardItem(product2).verifyQuantity(2);
-            await app.cartPage.cardItem(product2).verifyPrice(formatPrice(price2 * 2));
+            await app.cartPage.cartItem(product2).increment();
+            await app.cartPage.cartItem(product2).verifyQuantity(2);
+            await app.cartPage.cartItem(product2).verifyPrice(formatPrice(price2 * 2));
 
             await app.cartPage.orderSummary.verifySubtotal(formatPrice(price2 * 2));
             await app.cartPage.orderSummary.verifyShipping('Free');
             await app.cartPage.orderSummary.verifyTotal(formatPrice(price2 * 2));
 
-            await app.cartPage.cardItem(product2).clickName();
+            await app.cartPage.cartItem(product2).clickName();
 
             await app.productDetailPage.verifyLoaded();
             await app.productDetailPage.verifyProductName(product2);
@@ -619,8 +612,8 @@ test.describe('Cart & Checkout tests', () => {
             await app.cartPage.verifyLoaded();
             await app.cartPage.verifyItemCount(1);
 
-            await app.cartPage.cardItem(product2).verifyQuantity(2);
-            await app.cartPage.cardItem(product2).verifyPrice(formatPrice(price2 * 2));
+            await app.cartPage.cartItem(product2).verifyQuantity(2);
+            await app.cartPage.cartItem(product2).verifyPrice(formatPrice(price2 * 2));
 
             await app.cartPage.orderSummary.verifyLoaded();
             await app.cartPage.orderSummary.verifySubtotal(formatPrice(price2 * 2));
@@ -658,9 +651,12 @@ test.describe('Cart & Checkout tests', () => {
             await app.spCookieBanner.verifyLoaded();
             await app.spCookieBanner.clickDeclineButton();
             await app.spCookieBanner.verifyHidden();
+
             await app.spTrustBadge.verifyLoaded();
 
-            await app.loginPage.login(config.APP_USERNAME, config.APP_PASSWORD);
+            await app.loginPage.fillUsername(config.APP_USERNAME);
+            await app.loginPage.fillPassword(config.APP_PASSWORD);
+            await app.loginPage.clickSubmitButton();
 
             await app.homePage.verifyLoaded();
 

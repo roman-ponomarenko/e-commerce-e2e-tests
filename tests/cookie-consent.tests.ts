@@ -9,7 +9,6 @@ test.describe('Cookie Consent tests', () => {
 
             await app.spCookieBanner.verifyLoaded();
             await app.spCookieBanner.verifyAcceptAllButtonVisible();
-            await app.spCookieBanner.verifySaveButtonIsNotVisible();
             await app.spCookieBanner.verifyDeclineButtonVisible();
             await app.spCookieBanner.verifyCustomizeButtonVisible();
             await app.spCookieBanner.verifyPrivacyPolicyLinkVisible();

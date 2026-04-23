@@ -1,6 +1,6 @@
 import {AppPage} from "@/app/abstract-classes";
 import {step} from "@/utils/step-decorator";
-import type { Locator} from "@playwright/test";
+import type { Locator } from "@playwright/test";
 import {expect} from "@playwright/test";
 import {ProductCard} from "@/app/components/product-card.component";
 import type {StockStatus} from "@/app/components/product-card.component";
@@ -11,7 +11,7 @@ import {Category} from "@/app/pages/product-list.page";
 export type Size = 'XS' | 'S' | 'M' | 'L' | 'XL';
 
 export class ProductDetailPage extends AppPage {
-    pagePath: string = '/products';
+    pagePath = '/products';
 
     private pageRoot = this.$id('page-product-detail');
     private breadcrumb = this.page.getByRole('navigation', {name: 'Breadcrumb'});
@@ -30,7 +30,7 @@ export class ProductDetailPage extends AppPage {
         return this.$id(`size-option-${size}`);
     }
 
-    public relatedProduct(productName: string): ProductCard {
+    relatedProduct(productName: string): ProductCard {
         const card = this.relatedProducts.filter({hasText: productName}).first();
         return new ProductCard(this.page, card);
     }

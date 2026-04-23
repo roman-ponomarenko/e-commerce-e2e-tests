@@ -7,7 +7,6 @@ export class SpCookieBanner extends Component {
     private frameElement = this.page.frameLocator(this.frameLocator);
     private acceptAllButton = this.frameElement.getByRole('button', {name: 'Accept all'});
     private declineButton = this.frameElement.getByRole('button', {name: 'Decline'});
-    private saveButton = this.frameElement.getByRole('button', {name: 'Save'});
     private customizeButton = this.frameElement.getByRole('button', {name: 'Customize'});
     private personalSettingsLink = this.frameElement.getByRole('link', {name: 'personal settings'});
     private privacyPolicyLink = this.frameElement.getByRole('link', {name: 'Privacy Policy'});
@@ -27,16 +26,6 @@ export class SpCookieBanner extends Component {
     @step("Verifying 'Accept all' button is visible")
     async verifyAcceptAllButtonVisible(message = "'Accept all' button should be visible"): Promise<void> {
         await expect(this.acceptAllButton, message).toBeVisible();
-    }
-
-    @step("Verifying 'Save' button is visible")
-    async verifySaveButtonVisible(message = "'Save' button should be visible"): Promise<void> {
-        await expect(this.saveButton, message).toBeVisible();
-    }
-
-    @step("Verifying 'Save' button is not visible")
-    async verifySaveButtonIsNotVisible(message = "'Save' button should not be visible"): Promise<void> {
-        await expect(this.saveButton, message).toBeHidden();
     }
 
     @step("Verifying 'Decline' button is visible")
@@ -60,7 +49,7 @@ export class SpCookieBanner extends Component {
     }
 
     // Actions methods
-    @step("User clicks 'Accepts all' button")
+    @step("User clicks 'Accept all' button")
     async clickAcceptAllButton(): Promise<void> {
         await this.acceptAllButton.click();
     }

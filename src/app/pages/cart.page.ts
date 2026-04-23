@@ -1,6 +1,6 @@
 import {AppPage} from "@/app/abstract-classes";
 import {step} from "@/utils/step-decorator";
-import type { Locator} from "@playwright/test";
+import type { Locator } from "@playwright/test";
 import {expect} from "@playwright/test";
 import {CartItem} from "@/app/components/cart-item.component";
 import {OrderSummary} from "@/app/components/order-summary.component";
@@ -20,7 +20,7 @@ export class CartPage extends AppPage {
     orderSummary = new OrderSummary(this.page);
 
 
-    cardItem(productName: string): CartItem {
+    cartItem(productName: string): CartItem {
         const root: Locator = this.allCartItems.filter({
             has: this.page.getByRole('link', {name: productName})
         }).first();

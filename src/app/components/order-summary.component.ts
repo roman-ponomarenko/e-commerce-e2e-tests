@@ -17,7 +17,7 @@ export class OrderSummary extends Component {
     @step("Verifying order subtotal is '{expected}'")
     async verifySubtotal(
         expected: string,
-        message = `Order total should be '${expected}'`
+        message = `Order subtotal should be '${expected}'`
     ): Promise<void> {
         await expect(this.subtotal, message).toHaveText(expected);
     }
