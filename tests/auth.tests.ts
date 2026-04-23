@@ -4,9 +4,11 @@ import {test} from "@/app/app.fixture";
 
 test.describe('Authentication tests', () => {
 
+    const passwordOptions = {length: 20, pattern: /[A-Za-z0-9]/}
+
     test('Register with valid data should create an account and allow login',
         {tag: '@auth'}, async ({app}) => {
-            const password = faker.internet.password({length: 20});
+            const password = faker.internet.password(passwordOptions);
             const firstName = faker.person.firstName();
             const lastName = faker.person.lastName();
             const fullName = `${firstName} ${lastName}`;
@@ -87,7 +89,7 @@ test.describe('Authentication tests', () => {
             await app.loginPage.verifyLoaded();
 
             await app.loginPage.fillUsername(config.APP_USERNAME);
-            await app.loginPage.fillPassword(faker.internet.password({length: 12}));
+            await app.loginPage.fillPassword(faker.internet.password(passwordOptions));
             await app.loginPage.clickSubmitButton();
 
             await app.loginPage.verifyLoginErrorVisible('Invalid email or password');
@@ -100,7 +102,7 @@ test.describe('Authentication tests', () => {
             await app.loginPage.verifyLoaded();
 
             await app.loginPage.fillUsername(faker.internet.email());
-            await app.loginPage.fillPassword(faker.internet.password({length: 12}));
+            await app.loginPage.fillPassword(faker.internet.password(passwordOptions));
             await app.loginPage.clickSubmitButton();
 
             await app.loginPage.verifyLoginErrorVisible('Invalid email or password');
@@ -120,8 +122,9 @@ test.describe('Authentication tests', () => {
 
     test('Register should fail when passwords do not match',
         {tag: '@auth'}, async ({app}) => {
-            const password = faker.internet.password({length: 12, prefix: 'Aa1'});
-            const differentPassword = faker.internet.password({length: 12, prefix: 'Bb2'});
+
+            const password = faker.internet.password({...passwordOptions, prefix: 'Aa1'});
+            const differentPassword = faker.internet.password({...passwordOptions, prefix: 'Bb2'});
 
             await app.createAccountPage.open();
             await app.createAccountPage.verifyLoaded();
@@ -138,7 +141,7 @@ test.describe('Authentication tests', () => {
 
     test('Register should fail with already registered email',
         {tag: '@auth'}, async ({app, config}) => {
-            const password = faker.internet.password({length: 12, prefix: 'Aa1'});
+            const password = faker.internet.password(passwordOptions);
 
             await app.createAccountPage.open();
             await app.createAccountPage.verifyLoaded();
