@@ -13,13 +13,16 @@ const pwConfig: PlaywrightTestConfig = {
         timeout: 10 * 1000,
     },
 
+    outputDir: './.out/playwright-test-results',
+
     reporter: [
         ["line"],
-        ['html', {open: 'never'}],
+        ['html', {open: 'never', outputFolder: './.out/playwright-report'}],
         [
             "allure-playwright",
             {
-                resultsDir: "allure-results",
+                output: "./.out/allure-report",
+                resultsDir: "./.out/allure-results",
                 detail: true,
                 suiteTitle: true,
                 environmentInfo: {
